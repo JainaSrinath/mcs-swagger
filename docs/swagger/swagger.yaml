@@ -164,7 +164,7 @@ paths:
             type: string
       summary: Delete a Workspace
       tags:
-      - accounts
+      - workspaces
   /workspace/{uuid}/add/resource/{resourceName}:
     post:
       consumes:
@@ -266,7 +266,7 @@ paths:
           description: ""
       summary: Creates a WorkSpace
       tags:
-      - workpaces
+      - workspaces
   /worskpace/{UUID}:
     patch:
       consumes:

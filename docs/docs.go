@@ -61,7 +61,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "workpaces"
+                    "workspaces"
                 ],
                 "summary": "Creates a WorkSpace",
                 "parameters": [
@@ -151,7 +151,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "accounts"
+                    "workspaces"
                 ],
                 "summary": "Delete a Workspace",
                 "parameters": [
