@@ -51,7 +51,7 @@ var doc = `{
                 }
             }
         },
-        "/workspace": {
+        "/workspace/create": {
             "post": {
                 "description": "creates workspace diretory",
                 "consumes": [
@@ -181,6 +181,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "OrganizationID": {
+                    "description": "OrganizationID\nRequired: true\nMin Length: 1",
                     "type": "integer",
                     "format": "int64",
                     "example": 1
@@ -198,29 +199,17 @@ var doc = `{
                     "$ref": "#/definitions/gorm.DeletedAt"
                 },
                 "id": {
-                    "description": "Required: true",
                     "type": "integer",
                     "format": "int64",
                     "example": 2
                 },
-                "inputVariables": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
                 "name": {
+                    "description": "Name\nRequired: true\nMin Length: 1",
                     "type": "string",
                     "example": "account name"
                 },
                 "organization": {
                     "$ref": "#/definitions/models.Organization"
-                },
-                "outputVariable": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
                 },
                 "state": {
                     "type": "string",
