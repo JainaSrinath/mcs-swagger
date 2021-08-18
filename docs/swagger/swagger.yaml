@@ -99,11 +99,11 @@ paths:
       summary: Show the status of server.
       tags:
       - root
-  /workspace/{uuid}:
+  /workspace/{UUID}:
     get:
       consumes:
       - application/json
-      description: get string by UUID
+      description: get Workpace by UUID
       parameters:
       - description: worskspace ID
         in: path
@@ -114,14 +114,131 @@ paths:
       - application/json
       responses:
         "200":
-          description: ""
+          description: Found workspace
+          schema:
+            type: string
         "400":
-          description: ""
+          description: error
+          schema:
+            type: string
         "404":
-          description: ""
+          description: error
+          schema:
+            type: string
         "500":
-          description: ""
+          description: error
+          schema:
+            type: string
       summary: Show an workspace
+      tags:
+      - workspaces
+  /workspace/{uuid}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete by Workspace UUID
+      parameters:
+      - description: Workspace ID
+        in: path
+        name: uuid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: Succssfully Deleted Workspace
+          schema:
+            type: string
+        "400":
+          description: error
+          schema:
+            type: string
+        "404":
+          description: error
+          schema:
+            type: string
+        "500":
+          description: error
+          schema:
+            type: string
+      summary: Delete a Workspace
+      tags:
+      - accounts
+  /workspace/{uuid}/add/resource/{resourceName}:
+    post:
+      consumes:
+      - application/json
+      description: Enter WorkspaceUUID and resource Name
+      parameters:
+      - description: Workspace ID
+        in: path
+        name: uuid
+        required: true
+        type: string
+      - description: Resource Name
+        in: path
+        name: resourceName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully added resource to workspace
+          schema:
+            type: string
+        "400":
+          description: error
+          schema:
+            type: string
+        "404":
+          description: error
+          schema:
+            type: string
+        "500":
+          description: error
+          schema:
+            type: string
+      summary: Add resource to workspace
+      tags:
+      - workspaces
+  /workspace/{uuid}/add/template/:
+    post:
+      consumes:
+      - application/json
+      description: Enter WorkspaceUUID and template Name
+      parameters:
+      - description: Workspace UUID
+        in: path
+        name: uuid
+        required: true
+        type: string
+      - description: Template UUID
+        in: query
+        name: templateUUID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully added resource to workspace
+          schema:
+            type: string
+        "400":
+          description: error
+          schema:
+            type: string
+        "404":
+          description: error
+          schema:
+            type: string
+        "500":
+          description: error
+          schema:
+            type: string
+      summary: Add template to workspace
       tags:
       - workspaces
   /workspace/create:
@@ -150,6 +267,45 @@ paths:
       summary: Creates a WorkSpace
       tags:
       - workpaces
+  /worskpace/{UUID}:
+    patch:
+      consumes:
+      - application/json
+      description: Update by json Workspace
+      parameters:
+      - description: Workspace UUID
+        in: path
+        name: UUID
+        required: true
+        type: string
+      - description: Update workspace
+        in: body
+        name: workpace
+        required: true
+        schema:
+          $ref: '#/definitions/models.WorkSpace'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Updated Workspace Successfully
+          schema:
+            type: string
+        "400":
+          description: error
+          schema:
+            type: string
+        "404":
+          description: error
+          schema:
+            type: string
+        "500":
+          description: error
+          schema:
+            type: string
+      summary: Update a Workspace
+      tags:
+      - workspaces
 securityDefinitions:
   ApiKeyAuth:
     in: header
