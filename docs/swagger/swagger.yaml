@@ -1,0 +1,161 @@
+basePath: /api/v1
+definitions:
+  gorm.DeletedAt:
+    properties:
+      time:
+        type: string
+      valid:
+        description: Valid is true if Time is not NULL
+        type: boolean
+    type: object
+  models.Organization:
+    properties:
+      attributes:
+        items:
+          type: integer
+        type: array
+      createdAt:
+        type: string
+      deletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      id:
+        example: 1
+        format: int64
+        type: integer
+      name:
+        example: account name
+        type: string
+      updatedAt:
+        type: string
+      uuid:
+        example: workspace-550e8400
+        format: uuid
+        type: string
+    type: object
+  models.WorkSpace:
+    properties:
+      OrganizationID:
+        example: 1
+        format: int64
+        type: integer
+      attributes:
+        items:
+          type: integer
+        type: array
+      createdAt:
+        type: string
+      deletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      id:
+        description: 'Required: true'
+        example: 2
+        format: int64
+        type: integer
+      inputVariables:
+        items:
+          type: integer
+        type: array
+      name:
+        example: account name
+        type: string
+      organization:
+        $ref: '#/definitions/models.Organization'
+      outputVariable:
+        items:
+          type: integer
+        type: array
+      state:
+        example: creating
+        type: string
+      updatedAt:
+        type: string
+      uuid:
+        example: workspace-550e8400
+        format: uuid
+        type: string
+    type: object
+host: localhost:8090
+info:
+  contact:
+    name: API Support
+    url: http://accelerite.com/support
+  description: This is multicloud server.
+  termsOfService: accelerite.com
+  title: Swagger Multicloud service API
+  version: "1.0"
+paths:
+  /:
+    get:
+      consumes:
+      - '*/*'
+      description: get the status of server.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Show the status of server.
+      tags:
+      - root
+  /workspace:
+    post:
+      consumes:
+      - application/json
+      description: creates workspace diretory
+      parameters:
+      - description: Add workspace
+        in: body
+        name: workpace
+        required: true
+        schema:
+          $ref: '#/definitions/models.WorkSpace'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+        "404":
+          description: ""
+        "500":
+          description: ""
+      summary: Creates a WorkSpace
+      tags:
+      - workpaces
+  /workspace/{uuid}:
+    get:
+      consumes:
+      - application/json
+      description: get string by UUID
+      parameters:
+      - description: worskspace ID
+        in: path
+        name: UUID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+        "404":
+          description: ""
+        "500":
+          description: ""
+      summary: Show an workspace
+      tags:
+      - workspaces
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+  BasicAuth:
+    type: basic
+swagger: "2.0"
