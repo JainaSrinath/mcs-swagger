@@ -414,9 +414,13 @@ var doc = `{
         },
         "models.WorkSpace": {
             "type": "object",
+            "required": [
+                "OrganizationID",
+                "name"
+            ],
             "properties": {
                 "OrganizationID": {
-                    "description": "OrganizationID\nRequired: true\nMin Length: 1",
+                    "description": "Required: true\nMin Length: 1",
                     "type": "integer",
                     "format": "int64",
                     "example": 1
@@ -438,13 +442,25 @@ var doc = `{
                     "format": "int64",
                     "example": 2
                 },
+                "inputVariables": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
                 "name": {
-                    "description": "Name\nRequired: true\nMin Length: 1",
+                    "description": "Required: true\nMin Length: 1",
                     "type": "string",
                     "example": "account name"
                 },
                 "organization": {
                     "$ref": "#/definitions/models.Organization"
+                },
+                "outputVariable": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
                 },
                 "state": {
                     "type": "string",

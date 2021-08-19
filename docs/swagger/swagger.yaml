@@ -36,7 +36,6 @@ definitions:
     properties:
       OrganizationID:
         description: |-
-          OrganizationID
           Required: true
           Min Length: 1
         example: 1
@@ -54,15 +53,22 @@ definitions:
         example: 2
         format: int64
         type: integer
+      inputVariables:
+        items:
+          type: integer
+        type: array
       name:
         description: |-
-          Name
           Required: true
           Min Length: 1
         example: account name
         type: string
       organization:
         $ref: '#/definitions/models.Organization'
+      outputVariable:
+        items:
+          type: integer
+        type: array
       state:
         example: creating
         type: string
@@ -72,6 +78,9 @@ definitions:
         example: workspace-550e8400
         format: uuid
         type: string
+    required:
+    - OrganizationID
+    - name
     type: object
 host: localhost:8090
 info:
